@@ -1,0 +1,75 @@
+/* Base: reset ligero, tipografía, utilidades, Lenis, velo de color común y grano. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; background: var(--bg); }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); line-height: 1.55;
+  -webkit-font-smoothing: antialiased; overflow-x: clip;
+}
+img, picture, canvas, svg { display: block; max-width: 100%; }
+h1, h2, h3, p, ul, dl, dd, figure { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; }
+button { font: inherit; color: inherit; cursor: pointer; }
+
+/* Lenis (reglas oficiales mínimas) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+
+/* Foco visible y distinguible sin movimiento */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+[hidden] { display: none !important; }
+
+.sr-only {
+  position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: fixed; top: 0.75rem; left: 0.75rem; z-index: 200; padding: 0.6rem 1rem;
+  background: var(--accent); color: #031018; font-weight: 600; text-decoration: none;
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; }
+
+.eyebrow {
+  font-family: var(--font-body); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--accent);
+}
+.display { font-family: var(--font-display); font-weight: 700; line-height: 0.88; letter-spacing: -0.01em; text-transform: uppercase; }
+.lede { color: var(--muted); max-width: 38ch; }
+.fine { font-size: 0.78rem; line-height: 1.5; color: var(--muted); max-width: 62ch; }
+
+/* Velo de color común: unifica autos de colores y fuentes distintas.
+   Gradiente plano estático (sin blend modes ni filtros animados). */
+.veil::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(7, 8, 10, 0.55), rgba(7, 8, 10, 0.1) 35%, rgba(7, 8, 10, 0.6)),
+    rgba(14, 22, 30, 0.22);
+}
+/* La gradación de color común (saturación, contraste, brillo) está HORNEADA en img/opt por tools/optimizar-imagenes.py:
+   cero filtros CSS en runtime sobre capas que se animan. */
+
+/* Grano suave global: UNA capa fija, textura estática (no animada) */
+.grain {
+  position: fixed; inset: 0; z-index: 150; pointer-events: none; opacity: 0.07;
+  background-image: url("../img/opt/grano.png"); background-size: 160px 160px;
+}
+
+/* Cursor personalizado: solo puntero fino con hover y sin reduced motion */
+.cursor { display: none; }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .js.has-cursor .cursor {
+    display: grid; place-items: center; position: fixed; left: 0; top: 0; z-index: 180;
+    width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; pointer-events: none;
+    border: 1px solid var(--accent); opacity: 0; transform: translate(-100px, -100px) scale(0.2);
+    font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);
+    will-change: transform;
+  }
+  .js.has-cursor .cursor span { opacity: 0; transition: opacity var(--motion-fast) var(--ease-standard); }
+  .js.has-cursor .cursor.is-label span { opacity: 1; }
+}

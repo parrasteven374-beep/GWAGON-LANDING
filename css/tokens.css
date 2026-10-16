@@ -1,0 +1,48 @@
+/* Tokens de movimiento y diseño (web-animation-design: tokens-y-easing.md).
+   Una sola escala para todo el sitio. JS lee estos mismos valores en js/config.js (MOV). */
+
+@font-face { font-family: "Barlow Condensed"; font-weight: 500; font-display: swap;
+  src: url("../fonts/barlow-500.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-weight: 700; font-display: swap;
+  src: url("../fonts/barlow-700.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 400 600; font-display: swap;
+  src: url("../fonts/inter-var.woff2") format("woff2"); }
+
+:root {
+  /* Marca: un solo acento (turquesa eléctrico EQ) sobre negro y plata */
+  --bg: #07080a;
+  --bg-2: #0d0f12;
+  --fg: #f1f2f4;
+  --muted: #a3a9b1;      /* 7,9:1 sobre --bg */
+  --line: rgba(241, 242, 244, 0.16);
+  --accent: #5ad7ff;     /* acento único: contorno EQ, cifras, CTA */
+
+  --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Duraciones: escala corta (en segundos para JS: config.js) */
+  --motion-fast: 160ms;
+  --motion-medium: 280ms;
+  --motion-slow: 500ms;
+
+  /* Curvas */
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-out: var(--ease-out-cubic);
+  --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* Distancias de entrada */
+  --distance-sm: 8px;
+  --distance-md: 16px;
+  --distance-lg: 32px;
+
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+}
+
+/* Reduced motion: distancias a cero; se conserva solo el cambio de opacity/color */
+@media (prefers-reduced-motion: reduce) {
+  :root { --distance-sm: 0px; --distance-md: 0px; --distance-lg: 0px; }
+}

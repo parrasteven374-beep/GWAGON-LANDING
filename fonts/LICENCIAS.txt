@@ -1,0 +1,12 @@
+Fuentes alojadas localmente (subconjunto latino, woff2)
+
+barlow-500.woff2, barlow-700.woff2  -> Barlow Condensed 500 y 700
+  Autor: Jeremy Tribby (The Barlow Project Authors) — https://github.com/jpt/barlow
+  Licencia: SIL Open Font License 1.1 (texto en OFL-Barlow.txt)
+inter-var.woff2                      -> Inter (variable, pesos 400-600 usados)
+  Autor: Rasmus Andersson (The Inter Project Authors) — https://github.com/rsms/inter
+  Licencia: SIL Open Font License 1.1 (texto en OFL-Inter.txt)
+
+Origen de la descarga: Google Fonts (CSS API -> fonts.gstatic.com), 2026-10-16.
+Rutas: /s/barlowcondensed/v13/... y /s/inter/v20/...
+Uso comercial y alojamiento propio permitidos por la OFL; no se pueden vender las fuentes por separado.
